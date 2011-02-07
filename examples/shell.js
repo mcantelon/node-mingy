@@ -1,7 +1,6 @@
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
-  , util = require('util')
   , fs = require('fs')
 
 var commands = []
