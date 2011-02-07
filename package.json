@@ -1,0 +1,28 @@
+{
+    "name": "mingy",
+    "version": "0.0.1",
+    "description": "Cheap parsing for your CLI tool and adventure game needs.",
+    "tags" : ["cli", "parsing", "adventure"],
+    "author" : "Mike Cantelon <mcantelon@gmail.com>",
+    "contributors" : [],
+    "dependencies" : {
+    },
+    "main": "./lib/mingy",
+    "directories" : {
+        "lib": "./lib"
+    },
+    "repository": {
+        "type": "git",
+        "url" : "http://github.com/mcantelon/node-mingy.git"
+    },
+    "engines": {
+      "node": ">= 0.3.0"
+    },
+    "bugs" : {
+        "web" : "http://github.com/mcantelon/node-mingy/issues"
+    },
+    "licenses" : [{
+        "type" : "MIT",
+        "url" : "http://github.com/mcantelon/node-deja/blob/master/LICENSE"
+    }]
+}
