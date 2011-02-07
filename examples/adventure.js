@@ -102,11 +102,10 @@ command.set('logic', function(args, env) {
     else if (env.props[args.prop].location == 'player') {
       output += "You already have it, Einstein.\n"
     }
-    else {
-      output += "I don't see a " + args.prop + ".\n"
-    }
   }
-  else {
+
+  // haven't gotten anything, so there's nothing to be got
+  if (output == '') {
     output += "I don't see a " + args.prop + ".\n"
   }
 
@@ -125,11 +124,10 @@ command.set('logic', function(args, env) {
       env.props[args.prop].location = env.location
       output += "You drop the " + args.prop + ".\n"
     }
-    else {
-      output += "You don't have a " + args.prop + ".\n"
-    }
   }
-  else {
+
+  // haven't dropped anything, so there's nothing to drop
+  if (output == '') {
     output += "You don't have a " + args.prop + ".\n"
   }
 
