@@ -31,7 +31,7 @@ command.set('logic', function(args) {
   process.exit(0)
 })
 
-commands.push(command = new Command('quit'))
+commands.push(command = new Command('help'))
 command.set('syntax', ['help'])
 command.set('logic', function(args) {
 
@@ -113,7 +113,7 @@ command.set('logic', function(args, env) {
   return output
 })
 
-commands.push(command = new Command('get'))
+commands.push(command = new Command('drop'))
 command.set('syntax', ['drop <prop>'])
 command.set('logic', function(args, env) {
 
