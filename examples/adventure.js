@@ -142,7 +142,7 @@ command.set('logic', function(args, env) {
 
   var output = ''
 
-  // describe nearby props
+  // list props being carried
   for (var propName in env.props) {
     var prop = env.props[propName]
     if (prop.location == 'player') {
