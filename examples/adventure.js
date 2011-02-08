@@ -1,6 +1,7 @@
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
+  , Shell = mingy.Shell
 
 // define locations in our special game
 var Location = function Location() {}
@@ -191,9 +192,9 @@ console.log("Welcome to Rock Moving Adventure!\n")
 console.log("In a world gone mad, one rock is out of place.")
 console.log("Enter 'help' for a list of commands.")
 
-parser.shell('>', function(parser) {
+var shell = new Shell(parser, function(parser) {
   if (parser.env.props.rock.location == 'room') {
     console.log("Congratulations!!! You set things right and won the game!\n")
     process.exit(0)
   }
-})
+}).start()

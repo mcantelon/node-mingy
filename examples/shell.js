@@ -1,6 +1,7 @@
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
+  , Shell = mingy.Shell
   , fs = require('fs')
 
 var commands = []
@@ -39,4 +40,7 @@ console.log('Welcome to Sullen Shell: the shell with few aspirations.')
 console.log("Available commands: 'ls', 'cd', 'quit', or 'exit'.")
 
 var parser = new Parser(commands)
-parser.shell('$ ')
+
+var shell = new Shell(parser)
+.set('prompt', '$ ')
+.start()
