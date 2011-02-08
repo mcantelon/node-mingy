@@ -25,18 +25,18 @@ rock.description = 'The rock is alright.'
 rock.location = 'hallway'
 props['rock'] = rock
 
-// define commands
-var commands = []
+// set up parser and commands
+var parser = new Parser()
 
-commands.push(command = new Command('quit'))
-command.set('syntax', ['quit', 'exit'])
-command.set('logic', function(args) {
-  process.exit(0)
+parser.add_command('quit')
+.set('syntax', ['quit', 'exit'])
+.set('logic', function(args) {
+    process.exit(0)
 })
 
-commands.push(command = new Command('help'))
-command.set('syntax', ['help'])
-command.set('logic', function(args) {
+parser.add_command('help')
+.set('syntax', ['help'])
+.set('logic', function(args) {
 
   var output = ''
 
@@ -51,9 +51,9 @@ command.set('logic', function(args) {
   return output
 })
 
-commands.push(command = new Command('look'))
-command.set('syntax', ['l', 'look'])
-command.set('logic', function(args, env) {
+parser.add_command('look')
+.set('syntax', ['l', 'look'])
+.set('logic', function(args, env) {
 
   var output = ''
 
@@ -71,9 +71,9 @@ command.set('logic', function(args, env) {
   return output
 })
 
-commands.push(command = new Command('go'))
-command.set('syntax', ['go <direction>'])
-command.set('logic', function(args, env) {
+parser.add_command('go')
+.set('syntax', ['go <direction>'])
+.set('logic', function(args, env) {
 
   var output = ''
 
@@ -90,9 +90,9 @@ command.set('logic', function(args, env) {
   return output
 })
 
-commands.push(command = new Command('get'))
-command.set('syntax', ['get <prop>'])
-command.set('logic', function(args, env) {
+parser.add_command('get')
+.set('syntax', ['get <prop>'])
+.set('logic', function(args, env) {
 
   var output = ''
 
@@ -115,9 +115,9 @@ command.set('logic', function(args, env) {
   return output
 })
 
-commands.push(command = new Command('drop'))
-command.set('syntax', ['drop <prop>'])
-command.set('logic', function(args, env) {
+parser.add_command('drop')
+.set('syntax', ['drop <prop>'])
+.set('logic', function(args, env) {
 
   var output = ''
 
@@ -137,9 +137,9 @@ command.set('logic', function(args, env) {
   return output
 })
 
-commands.push(command = new Command('inventory'))
-command.set('syntax', ['i', 'inventory'])
-command.set('logic', function(args, env) {
+parser.add_command('inventory')
+.set('syntax', ['i', 'inventory'])
+.set('logic', function(args, env) {
 
   var output = ''
 
@@ -158,15 +158,15 @@ command.set('logic', function(args, env) {
   return output
 })
 
+parser.setEnv('locations', locations)
+parser.setEnv('props', props)
+parser.setEnv('location', 'hallway')
+
 // begin adventurings!
 console.log("Welcome to Rock Moving Adventure!\n")
 console.log("In a world gone mad, one rock is out of place.")
 console.log("Enter 'help' for a list of commands.")
 
-var parser = new Parser(commands)
-parser.setEnv('locations', locations)
-parser.setEnv('props', props)
-parser.setEnv('location', 'hallway')
 parser.shell('>', function(parser) {
   if (parser.env.props.rock.location == 'room') {
     console.log("Congratulationis!!! You set things right and won the game!\n")
