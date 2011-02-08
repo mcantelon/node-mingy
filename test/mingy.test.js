@@ -54,9 +54,9 @@ module.exports = {
   },
 
   // typed name with type handler
-  'simple parse with named, typed param': function() {
+  'simple parse with named, validated param': function() {
     var command = new Command('look')
-    command.set('syntax', ['look <string:thing>'])
+    command.set('syntax', ['look <is_cat:thing>'])
     command.set('logic', function(args) {
       if (!args || !args['thing']) {
         return 'Nothing to look at.'
@@ -67,16 +67,26 @@ module.exports = {
     })
 
     var parser = new Parser([command])
-    parser.add_validator('string', function(lexeme) {
-      lexeme.should.equal('cat')
-      return lexeme
+    parser.add_validator('is_cat', function(lexeme) {
+      if (lexeme == 'cat') {
+        return {
+          "success": true,
+          "value": lexeme
+        }
+      }
+      else {
+        return {
+          "success": false,
+          "message": "That is not a cat."
+        }
+      }
     })
 
     var output = parser.parseLexemes(['look', 'cat'])
     output.should.equal('You look at cat.')
 
     var output = parser.parseLexemes(['look', 9])
-    should.equal(undefined, output)
+    output.should.equal('That is not a cat.')
   },
 
   // typed name with no type hanlder
