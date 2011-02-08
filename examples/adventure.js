@@ -3,24 +3,27 @@ var mingy = require('../lib/mingy')
   , Command = mingy.Command
 
 // define locations in our special game
-var locations = {
-  "hallway": {
-    "description": "You are in a hallway. From here you can go north.",
-    "exits": {"north": "room"}
-  },
-  "room": {
-    "description": "You are in a room. From here you can go south.",
-    "exits": {"south": "hallway"}
-  }
-}
+var Location = function Location() {}
+var locations = {}
+
+var hallway = new Location()
+hallway.description = "You are in a hallway. From here you can go north."
+hallway.exits = {"north": "room"}
+locations['hallway'] = hallway
+
+var room = new Location()
+room.description = "You are in a hallway. From here you can go north."
+room.exits = {"north": "room"}
+locations['room'] = room
 
 // define props in our special game
-var props = {
-  "rock": {
-    "description": "The rock is alright.",
-    "location": "hallway"
-  }
-}
+var Prop = function Prop() {}
+var props = []
+
+var rock = new Prop()
+rock.description = 'The rock is alright.'
+rock.location = 'hallway'
+props['rock'] = rock
 
 // define commands
 var commands = []
