@@ -11,6 +11,8 @@
 mingy is a cheap parser for node.js CLI tools, adventure games, and other such
 endeavors.
 
+THIS MODULE IS UNDER DEVELOPMENT EXPECT NOTHING FEAR EVERYTHING
+
 In order to reap the "magic" of mingy you define a number of commands, each of
 which has one or more syntax forms.
 
