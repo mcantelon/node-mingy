@@ -28,7 +28,7 @@ props['rock'] = rock
 // set up parser and commands
 var parser = new Parser()
 
-// prop validator restricts prop input to props in current location
+// prop validator restricts lexeme to props in current location
 parser.add_validator('prop_present', function(lexeme, env) {
 
   // make sure prop exists
@@ -41,12 +41,11 @@ parser.add_validator('prop_present', function(lexeme, env) {
 
   return {
     'success': success,
-    'value': lexeme,
     'message': "I don't see that.\n"
   }
 })
 
-// prop validator restricts prop input to props in current location
+// prop validator restricts lexeme to props in current location
 parser.add_validator('prop_held', function(lexeme, env) {
 
   // make sure prop exists
@@ -59,7 +58,6 @@ parser.add_validator('prop_held', function(lexeme, env) {
 
   return {
     'success': success,
-    'value': lexeme,
     'message': "I don't have that.\n"
   }
 })
@@ -107,17 +105,28 @@ parser.add_command('look')
   return output
 })
 
+parser.add_validator('direction', function(lexeme) {
+
+  var valid_directions = ['north', 'south', 'east', 'west']
+
+  return {
+    'success': (valid_directions.indexOf(lexeme) != -1),
+    'message': "That's not a direction I understand.\n"
+  }
+})
+
 parser.add_command('go')
-.set('syntax', ['go <direction>'])
+.set('syntax', ['go <direction:direction>'])
 .set('logic', function(args, env) {
 
   var output = ''
+  var direction = args.direction
 
   var location = env.locations[env.location]
 
-  if (location.exits[args.direction]) {
-    output += "You go " + args.direction + ".\n"
-    env.location = location.exits[args.direction]
+  if (location.exits[direction]) {
+    output += "You go " + direction + ".\n"
+    env.location = location.exits[direction]
   }
   else {
     output += "You can't go that way.\n"
