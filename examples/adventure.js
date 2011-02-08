@@ -192,8 +192,8 @@ console.log("Welcome to Rock Moving Adventure!\n")
 console.log("In a world gone mad, one rock is out of place.")
 console.log("Enter 'help' for a list of commands.")
 
-var shell = new Shell(parser, function(parser) {
-  if (parser.env.props.rock.location == 'room') {
+var shell = new Shell(parser, function(shell) {
+  if (shell.parser.env.props.rock.location == 'room') {
     console.log("Congratulations!!! You set things right and won the game!\n")
     process.exit(0)
   }
