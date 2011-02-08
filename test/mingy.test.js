@@ -6,7 +6,7 @@ var mingy = require('../lib/mingy')
 
 module.exports = {
 
-  // basic command setup
+  // basic command object setup
   'command configuration': function() {
     var command = new Command('look')
     command.set('syntax', ['look <string>'])
@@ -23,7 +23,7 @@ module.exports = {
     command.logic().should.equal('Nothing to look at.')
   },
 
-  // name only (untyped) with no type handler
+  // named argument
   'command with named, untyped param': function() {
     var command = new Command('look')
     command.set('syntax', ['look <thing>'])
@@ -36,8 +36,8 @@ module.exports = {
     output.should.equal('You look at cat.')
   },
 
-  // name only (untyped), with unrelated type handler
-  'command with named, untyped param and unrelated type handler set': function() {
+  // name argument and unrelated validator
+  'command with named, untyped param and validator handler set': function() {
     var command = new Command('look')
     command.set('syntax', ['look <thing>'])
     command.set('logic', function(args) {
@@ -45,7 +45,7 @@ module.exports = {
     })
 
     var parser = new Parser([command])
-    parser.add_validator('string', function(lexeme) {
+    parser.add_validator('animal', function(lexeme) {
       throw "This should not have fired!"
       return lexeme
     })
@@ -53,7 +53,7 @@ module.exports = {
     output.should.equal('You look at cat.')
   },
 
-  // typed name with type handler
+  // argument validator
   'simple parse with named, validated param': function() {
     var command = new Command('look')
     command.set('syntax', ['look <is_cat:thing>'])
@@ -90,7 +90,7 @@ module.exports = {
   },
 
   // typed name with no type hanlder
-  'simple parse with named, typed param but no handler set': function() {
+  'simple parse with named, typed param': function() {
     var command = new Command('look')
     command.set('syntax', ['look <string:thing>'])
     command.set('logic', function(args) {
