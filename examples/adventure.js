@@ -12,8 +12,8 @@ hallway.exits = {"north": "room"}
 locations['hallway'] = hallway
 
 var room = new Location()
-room.description = "You are in a hallway. From here you can go north."
-room.exits = {"north": "room"}
+room.description = "You are in a groovy room. From here you can go south."
+room.exits = {"south": "hallway"}
 locations['room'] = room
 
 // define props in our special game
@@ -27,6 +27,42 @@ props['rock'] = rock
 
 // set up parser and commands
 var parser = new Parser()
+
+// prop validator restricts prop input to props in current location
+parser.add_validator('prop_present', function(lexeme, env) {
+
+  // make sure prop exists
+  var success = (env.props[lexeme]) ? true : false
+
+  // make sure prop is in current location
+  if (success && (env.props[lexeme].location != env.location)) {
+    success = false
+  }
+
+  return {
+    'success': success,
+    'value': lexeme,
+    'message': "I don't see that.\n"
+  }
+})
+
+// prop validator restricts prop input to props in current location
+parser.add_validator('prop_held', function(lexeme, env) {
+
+  // make sure prop exists
+  var success = (env.props[lexeme]) ? true : false
+
+  // make sure prop is in player's inventory
+  if (success && (env.props[lexeme].location != 'player')) {
+    success = false
+  }
+
+  return {
+    'success': success,
+    'value': lexeme,
+    'message': "I don't have that.\n"
+  }
+})
 
 parser.add_command('quit')
 .set('syntax', ['quit', 'exit'])
@@ -91,48 +127,27 @@ parser.add_command('go')
 })
 
 parser.add_command('get')
-.set('syntax', ['get <prop>'])
+.set('syntax', ['get <prop_present>'])
 .set('logic', function(args, env) {
 
   var output = ''
+  var prop = args['prop_present']
 
-  if (env.props[args.prop]) {
-
-    if (env.props[args.prop].location == env.location) {
-      env.props[args.prop].location = 'player'
-      output += "You take the " + args.prop + ".\n"
-    }
-    else if (env.props[args.prop].location == 'player') {
-      output += "You already have it, Einstein.\n"
-    }
-  }
-
-  // haven't gotten anything, so there's nothing to be got
-  if (output == '') {
-    output += "I don't see a " + args.prop + ".\n"
-  }
+  env.props[prop].location = 'player'
+  output += "You take the " + prop + ".\n"
 
   return output
 })
 
 parser.add_command('drop')
-.set('syntax', ['drop <prop>'])
+.set('syntax', ['drop <prop_held>'])
 .set('logic', function(args, env) {
 
   var output = ''
+  var prop = args.prop_held
 
-  if (env.props[args.prop]) {
-
-    if (env.props[args.prop].location == 'player') {
-      env.props[args.prop].location = env.location
-      output += "You drop the " + args.prop + ".\n"
-    }
-  }
-
-  // haven't dropped anything, so there's nothing to drop
-  if (output == '') {
-    output += "You don't have a " + args.prop + ".\n"
-  }
+  env.props[prop].location = env.location
+  output += "You drop the " + prop + ".\n"
 
   return output
 })
