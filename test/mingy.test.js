@@ -45,7 +45,7 @@ module.exports = {
     })
 
     var parser = new Parser([command])
-    parser.add_type_handler('string', function(lexeme) {
+    parser.add_validator('string', function(lexeme) {
       throw "This should not have fired!"
       return lexeme
     })
@@ -67,7 +67,7 @@ module.exports = {
     })
 
     var parser = new Parser([command])
-    parser.add_type_handler('string', function(lexeme) {
+    parser.add_validator('string', function(lexeme) {
       lexeme.should.equal('cat')
       return lexeme
     })
