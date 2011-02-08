@@ -193,7 +193,7 @@ console.log("Enter 'help' for a list of commands.")
 
 parser.shell('>', function(parser) {
   if (parser.env.props.rock.location == 'room') {
-    console.log("Congratulationis!!! You set things right and won the game!\n")
+    console.log("Congratulations!!! You set things right and won the game!\n")
     process.exit(0)
   }
 })
