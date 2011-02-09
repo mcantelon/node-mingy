@@ -211,9 +211,11 @@ var shell = new Shell(parser, function(shell) {
 })
 .set_mode('wait_for_restart', function(shell, data) {
 
+  data = shell.parser.cleanInput(data)
+
   var output = ''
 
-  if (data == "yes\n") {
+  if (data == "yes") {
 
     output += "Restarting...\n\n"
 
@@ -225,7 +227,7 @@ var shell = new Shell(parser, function(shell) {
 
     shell.mode = "default"
   }
-  else if (data == "no\n") {
+  else if (data == "no") {
     output += "Thanks for playing.\n"
     process.exit()
   }
