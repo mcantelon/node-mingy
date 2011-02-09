@@ -185,6 +185,7 @@ parser.add_command('inventory')
 
 parser.setEnv('locations', locations)
 parser.setEnv('props', props)
+parser.setEnv('propsStartingCondition', parser.clone(props))
 parser.setEnv('location', 'hallway')
 
 // begin adventurings!
@@ -193,8 +194,45 @@ console.log("In a world gone mad, one rock is out of place.")
 console.log("Enter 'help' for a list of commands.")
 
 var shell = new Shell(parser, function(shell) {
-  if (shell.parser.env.props.rock.location == 'room') {
-    console.log("Congratulations!!! You set things right and won the game!\n")
-    process.exit(0)
+
+  var output = ''
+
+  // if player wins, allow her to restart game
+  if (
+    shell.parser.env.props.rock.location == 'room'
+    && shell.mode != 'wait_for_restart'
+  ) {
+    output += "Congratulations!!! You're set things right and won the game!\n\n"
+    output += "Do you want to restart? ('yes' or 'no')\n"
+    shell.mode = 'wait_for_restart'
   }
-}).start()
+
+  return output
+})
+.set_mode('wait_for_restart', function(shell, data) {
+
+  var output = ''
+
+  if (data == "yes\n") {
+
+    output += "Restarting...\n\n"
+
+    // reset props and player location to initial state
+    shell.parser.env.props = shell.parser.clone(shell.parser.env.propsStartingCondition)
+    shell.parser.env.location = 'hallway'
+
+    output += shell.parser.commands['look'].logic({}, shell.parser.env)
+
+    shell.mode = "default"
+  }
+  else if (data == "no\n") {
+    output += "Thanks for playing.\n"
+    process.exit()
+  }
+  else {
+    output += "Please enter 'yes' or 'no.\n"
+  }
+
+  return output
+})
+.start()
