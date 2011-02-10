@@ -36,11 +36,12 @@ command.set('logic', function(args) {
   return output
 })
 
-console.log('Welcome to Sullen Shell: the shell with few aspirations.')
-console.log("Available commands: 'ls', 'cd', 'quit', or 'exit'.")
+var welcome = "Welcome to Sullen Shell: the shell with few aspirations.\n"
+            + "Available commands: 'ls', 'cd', 'quit', or 'exit'.\n\n"
 
 var parser = new Parser(commands)
 
 var shell = new Shell(parser)
+.set('welcome', welcome)
 .set('prompt', '$ ')
 .start()
