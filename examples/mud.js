@@ -58,7 +58,7 @@ parser.add_command('nick')
 })
 
 parser.add_command('say')
-.set('syntax', ['say <message>'])
+.set('syntax', ['say <string:message*>'])
 .set('logic', function(args, env, stream) {
 
   var output = "You say your piece.\n"
@@ -70,7 +70,7 @@ parser.add_command('say')
   for (var userID in env.users) {
     var user = env.users[userID]
     if (user.location == location && (userID != stream.userID)) {
-      user.messages.push(name + " says '" + args['message'] + "'.\n")
+      user.messages.push(name + " says '" + args['message*'] + "'.\n")
     }
   }
 
