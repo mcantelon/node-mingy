@@ -211,7 +211,7 @@ var shell = new Shell(parser)
 
   return output
 })
-.set_mode('wait_for_restart', function(shell, data) {
+.setMode('wait_for_restart', function(shell, data) {
 
   data = shell.parser.cleanInput(data)
 
