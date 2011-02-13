@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+var mingy = require('../lib/mingy')
+  , Parser = mingy.Parser
+  , Command = mingy.Command
+  , argv = require('optimist').argv
+
+// set up parser and commands
+var parser = new Parser()
+
+// allow command-line flag to determine whether equation gets shown
+parser.env['show_equation'] = argv['t']
+
+parser.add_command('add')
+.set('syntax', [
+  'add <number:a> <number:b>',
+  '+ <number:a> <number:b>'
+])
+.set('logic', function(args, env) {
+
+  var output = ''
+
+  if (env.show_equation) {
+    output += args['a'] + " + " + args['b'] + " = "
+  }
+
+  output += args['a'] + args['b']
+
+  return output
+})
+
+parser.add_command('subtract')
+.set('syntax', [
+  'subtract <number:a> <number:b>',
+  '- <number:a> <number:b>'
+])
+.set('logic', function(args) {
+  return args['a'] + args['b']
+})
+
+parser.add_command('help')
+.set('syntax', ['help'])
+.set('logic', function(args, env) {
+
+  var output = ''
+
+  output += "Welcome to POWERCALC!\n\n"
+
+  output += "  Usage: calc <command> [option]\n\n"
+
+  output += "  Options:\n"
+  output += "    -t show equation\n\n"
+
+  output += "  Commands:\n"
+  output += "    'add <number> <number>' to add two numbers\n"
+  output += "    '+ <number> <number>' to add two numbers\n"
+  output += "    'subtract <number> <number>' to subtract two numbers\n"
+  output += "    '- <number> <number>' to subtract two numbers"
+
+  return output
+})
+
+var output = parser.parseLexemes(argv['_'])
+
+output = output || 'Bad arguments! Try "calc help".'
+
+console.log(output)
