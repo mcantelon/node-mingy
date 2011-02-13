@@ -11,10 +11,11 @@
 Mingy is a cheap and cheerful command parser for node.js CLI tools, adventure
 games, and other such endeavors.
 
-For CLI tools, Mingy works well with node-optimist (available as "optimist"
-via npm). For interactive uses, Mingy includes a shell handler that lets you
-quickly use your commands interactively. A Mingy shell can work locally via
-the command line or remotely via telnet.
+For CLI tools, Mingy works well with
+[node-optimist](https://github.com/substack/node-optimist) (available as
+"optimist" via npm). For interactive uses, Mingy includes a shell handler that
+lets you quickly use your commands interactively. A Mingy shell can work
+locally via the command line or remotely via telnet.
 
 Mingy includes a number of simple demos, in the "examples" directory, that can
 give you a quick idea how things work. Examples include a CLI calculator, a
@@ -100,6 +101,24 @@ options returned from node-optimist:
 
     parser.parseLexemes(argv['_'])
 
-## More soon...
+## Concatenation
+
+Normally an argument takes a single lexeme. If one wants to have an argument
+contain a concatenation of all subsequent lexemes adding a `*` after the
+argument name will enable this.
+
+Note that these arguments only work when they are the last argument in a
+syntax form.
+
+Below is an example:
+
+    parser.add_command('say')
+    .set('syntax', ['say <string:message*>'])
+    .set('logic', function(args, env, stream) {
+
+      return "You say '" + args['message'] + "'.\n"
+    })
+
+## In the Works
 
 Expect more documentation and publishing to the npm repository.
