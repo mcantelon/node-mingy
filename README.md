@@ -90,7 +90,8 @@ argument with the name of the type and a colon. For example:
 ## Parsing
 
 To parse command input, either the `parse.parse` or `parse.parseLexemes`
-methods are used.
+methods are used. A response string is returned by the method (or, if
+the parse was unsuccessful, `undefined`).
 
 Here's an example of parsing a string of text input using `parse.parse`:
 
