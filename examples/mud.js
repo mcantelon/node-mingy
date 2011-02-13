@@ -137,6 +137,7 @@ var welcome = "Welcome to Low Rent MUD!\n\n"
             + "Not much happens here, but the stress level is low.\n"
 
 var shell = new Shell(parser)
+.set('port', 8888)
 .set('welcome', welcome)
 .set('connect_logic', function(shell, stream) {
 
