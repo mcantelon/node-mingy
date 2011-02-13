@@ -22,8 +22,10 @@ var parser = new Parser()
 
 parser.add_command('quit')
 .set('syntax', ['quit', 'exit'])
-.set('logic', function(args) {
-    process.exit(0)
+.set('logic', function(args, env, stream) {
+  delete env.users[stream.userID]
+  delete stream.userID
+  return "Goodbye!\n"
 })
 
 parser.add_command('help')
@@ -160,10 +162,12 @@ var shell = new Shell(parser)
     , message
     , messages
 
-  // relay anything sent by other users
-  messages = shell.parser.env.users[stream.userID].messages
-  for (var index in messages) {
-    output += messages.pop()
+  if (shell.parser.env.users[stream.userID]) {
+    // relay anything sent by other users
+    messages = shell.parser.env.users[stream.userID].messages
+    for (var index in messages) {
+      output += messages.pop()
+    }
   }
 
   return output
