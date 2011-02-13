@@ -30,7 +30,7 @@ props['rock'] = rock
 var parser = new Parser()
 
 // prop validator restricts lexeme to props in current location
-parser.add_validator('prop_present', function(lexeme, env) {
+parser.addValidator('prop_present', function(lexeme, env) {
 
   // make sure prop exists
   var success = (env.props[lexeme]) ? true : false
@@ -47,7 +47,7 @@ parser.add_validator('prop_present', function(lexeme, env) {
 })
 
 // prop validator restricts lexeme to props in current location
-parser.add_validator('prop_held', function(lexeme, env) {
+parser.addValidator('prop_held', function(lexeme, env) {
 
   // make sure prop exists
   var success = (env.props[lexeme]) ? true : false
@@ -63,13 +63,13 @@ parser.add_validator('prop_held', function(lexeme, env) {
   }
 })
 
-parser.add_command('quit')
+parser.addCommand('quit')
 .set('syntax', ['quit', 'exit'])
 .set('logic', function(args) {
     process.exit(0)
 })
 
-parser.add_command('help')
+parser.addCommand('help')
 .set('syntax', ['help'])
 .set('logic', function(args) {
 
@@ -86,7 +86,7 @@ parser.add_command('help')
   return output
 })
 
-parser.add_command('look')
+parser.addCommand('look')
 .set('syntax', ['l', 'look'])
 .set('logic', function(args, env) {
 
@@ -106,7 +106,7 @@ parser.add_command('look')
   return output
 })
 
-parser.add_validator('direction', function(lexeme) {
+parser.addValidator('direction', function(lexeme) {
 
   var valid_directions = ['north', 'south', 'east', 'west']
 
@@ -116,7 +116,7 @@ parser.add_validator('direction', function(lexeme) {
   }
 })
 
-parser.add_command('go')
+parser.addCommand('go')
 .set('syntax', ['go <direction:direction>'])
 .set('logic', function(args, env) {
 
@@ -136,7 +136,7 @@ parser.add_command('go')
   return output
 })
 
-parser.add_command('get')
+parser.addCommand('get')
 .set('syntax', ['get <prop_present>'])
 .set('logic', function(args, env) {
 
@@ -149,7 +149,7 @@ parser.add_command('get')
   return output
 })
 
-parser.add_command('drop')
+parser.addCommand('drop')
 .set('syntax', ['drop <prop_held>'])
 .set('logic', function(args, env) {
 
@@ -162,7 +162,7 @@ parser.add_command('drop')
   return output
 })
 
-parser.add_command('inventory')
+parser.addCommand('inventory')
 .set('syntax', ['i', 'inventory'])
 .set('logic', function(args, env) {
 

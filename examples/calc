@@ -10,7 +10,7 @@ var parser = new Parser()
 // allow command-line flag to determine whether equation gets shown
 parser.env['show_equation'] = argv['t']
 
-parser.add_command('add')
+parser.addCommand('add')
 .set('syntax', [
   'add <number:a> <number:b>',
   '+ <number:a> <number:b>'
@@ -28,7 +28,7 @@ parser.add_command('add')
   return output
 })
 
-parser.add_command('subtract')
+parser.addCommand('subtract')
 .set('syntax', [
   'subtract <number:a> <number:b>',
   '- <number:a> <number:b>'
@@ -37,7 +37,7 @@ parser.add_command('subtract')
   return args['a'] + args['b']
 })
 
-parser.add_command('help')
+parser.addCommand('help')
 .set('syntax', ['help'])
 .set('logic', function(args, env) {
 

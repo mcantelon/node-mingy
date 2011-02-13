@@ -20,7 +20,7 @@ locations['room'] = room
 // set up parser and commands
 var parser = new Parser()
 
-parser.add_command('quit')
+parser.addCommand('quit')
 .set('syntax', ['quit', 'exit'])
 .set('logic', function(args, env, stream) {
   delete env.users[stream.userID]
@@ -28,7 +28,7 @@ parser.add_command('quit')
   return "Goodbye!\n"
 })
 
-parser.add_command('help')
+parser.addCommand('help')
 .set('syntax', ['help'])
 .set('logic', function(args) {
 
@@ -43,7 +43,7 @@ parser.add_command('help')
   return output
 })
 
-parser.add_command('nick')
+parser.addCommand('nick')
 .set('syntax', ['nick <string:username>'])
 .set('logic', function(args, env, stream) {
 
@@ -56,7 +56,7 @@ parser.add_command('nick')
   return output
 })
 
-parser.add_command('say')
+parser.addCommand('say')
 .set('syntax', ['say <string:message*>'])
 .set('logic', function(args, env, stream) {
 
@@ -76,7 +76,7 @@ parser.add_command('say')
   return output
 })
 
-parser.add_command('look')
+parser.addCommand('look')
 .set('syntax', ['l', 'look'])
 .set('logic', function(args, env, stream) {
 
@@ -98,7 +98,7 @@ parser.add_command('look')
   return output
 })
 
-parser.add_validator('direction', function(lexeme) {
+parser.addValidator('direction', function(lexeme) {
 
   var valid_directions = ['north', 'south', 'east', 'west']
 
@@ -108,7 +108,7 @@ parser.add_validator('direction', function(lexeme) {
   }
 })
 
-parser.add_command('go')
+parser.addCommand('go')
 .set('syntax', ['go <direction:direction>'])
 .set('logic', function(args, env, stream) {
 

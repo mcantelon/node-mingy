@@ -45,7 +45,7 @@ module.exports = {
     })
 
     var parser = new Parser([command])
-    parser.add_validator('animal', function(lexeme) {
+    parser.addValidator('animal', function(lexeme) {
       throw "This should not have fired!"
       return lexeme
     })
@@ -67,7 +67,7 @@ module.exports = {
     })
 
     var parser = new Parser([command])
-    parser.add_validator('is_cat', function(lexeme) {
+    parser.addValidator('is_cat', function(lexeme) {
       if (lexeme == 'cat') {
         return {
           "success": true,
