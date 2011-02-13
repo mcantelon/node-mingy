@@ -8,7 +8,7 @@
     |  |      |  | |   | |  |    |  |  \        /  \      /       
     '--'      '--' '---' '--'    '--'   `'-...-'    `-..-'     
 
-mingy is a cheap parser for node.js CLI tools, adventure games, and other such
+Mingy is a cheap parser for node.js CLI tools, adventure games, and other such
 endeavors.
 
 THIS MODULE IS UNDER DEVELOPMENT EXPECT NOTHING FEAR EVERYTHING
@@ -21,6 +21,11 @@ would mean the parser input `look` would trigger the command. The syntax
 `look <prop>` would mean the parser input `look mailbox` or `look demon` would
 both trigger the command (with the command's "prop" argument being set,
 respectively, to `mailbox` and `demon`).
+
+Mingy includes a shell handler that lets you quickly use your commands
+interactively, either locally via a command line or remotely, via telnet.
+
+For command line applications, the use of the "optimist" module works well.
 
 I'll be fleshing this documentation out soon, but in the meantime check out
 the samples in the examples directory.
