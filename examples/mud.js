@@ -36,9 +36,6 @@ parser.add_command('help')
   output += "  'look' (or 'l') to look around\n"
   output += "  'go <direction>' to walk in a direction\n"
   output += "  'say <something>' to say some things\n"
-  output += "  'get <object>' to pick up something\n"
-  output += "  'drop <object>' to drop something\n"
-  output += "  'inventory' (or 'i') to list what you're carrying\n"
   output += "  'exit' to quit the game\n"
 
   return output
@@ -115,12 +112,13 @@ parser.add_command('go')
 
   var output = ''
   var direction = args.direction
+  var userLocation = env.users[stream.userID].location
 
-  var location = env.locations[env.location]
+  var location = env.locations[userLocation]
 
   if (location.exits[direction]) {
     output += "You go " + direction + ".\n"
-    env.location = location.exits[direction]
+    env.users[stream.userID].location = location.exits[direction]
   }
   else {
     output += "You can't go that way.\n"
@@ -161,10 +159,9 @@ var shell = new Shell(parser)
     , message
     , messages
 
+  // relay anything sent by other users
   messages = shell.parser.env.users[stream.userID].messages
-
   for (var index in messages) {
-
     output += messages.pop()
   }
 
