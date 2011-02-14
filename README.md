@@ -15,7 +15,7 @@ For CLI tools, Mingy works well with
 [node-optimist](https://github.com/substack/node-optimist) (available as
 "optimist" via npm). For interactive uses, Mingy includes a shell handler that
 lets you quickly use your commands interactively. A Mingy shell can work
-locally via the command line or remotely via telnet.
+locally via the command line or remotely as a server.
 
 Mingy includes a number of simple demos, in the "examples" directory, that can
 give you a quick idea how things work. Examples include a CLI calculator, a
