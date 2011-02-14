@@ -34,7 +34,7 @@ respectively, to `mailbox` and `demon`).
 
 An example command for a text adventure game:
 
-    parser.add_command('go')
+    parser.addCommand('go')
     .set('syntax', ['go <direction>'])
     .set('logic', function(args, env) {
 
@@ -63,12 +63,12 @@ the event of failure, an optional error message.
 An example that could be used to validate direction arguments for the text
 adventure game example above:
 
-    parser.add_validator('valid_direction', function(lexeme) {
+    parser.addValidator('validDirection', function(lexeme) {
 
-      var valid_directions = ['north', 'south', 'east', 'west']
+      var validDirections = ['north', 'south', 'east', 'west']
 
       return {
-        'success': (valid_directions.indexOf(lexeme) != -1),
+        'success': (validDirections.indexOf(lexeme) != -1),
         'message': "That's not a direction I understand.\n"
       }
     })
@@ -78,13 +78,13 @@ must prefix the name of an argument with the name of a handler and a colon.
 For example, to enable the above validator on the above command one would
 make the following change to the command:
 
-    parser.add_command('go')
-    .set('syntax', ['go <valid_direction:direction>'])
+    parser.addCommand('go')
+    .set('syntax', ['go <validDirection:direction>'])
 
 Validation by type is simpler. One just needs to prefix the name of an
 argument with the name of the type and a colon. For example:
 
-    parser.add_command('go')
+    parser.addCommand('go')
     .set('syntax', ['go <string:direction>'])
 
 ## Parsing
@@ -113,7 +113,7 @@ syntax form.
 
 Below is an example:
 
-    parser.add_command('say')
+    parser.addCommand('say')
     .set('syntax', ['say <string:message*>'])
     .set('logic', function(args, env, stream) {
 
