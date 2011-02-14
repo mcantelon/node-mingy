@@ -1,3 +1,8 @@
+/*
+
+THIS IS A WORK IN PROGRESS...
+
+*/
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
@@ -9,7 +14,7 @@ var parser = new Parser()
 
 // define commands (which function as routes)
 parser.addCommand('home')
-.set('syntax', [''])
+.set('syntax', ['GET', 'POST'])
 .set('logic', function(args, env) {
 
   var output = ''
@@ -57,7 +62,7 @@ parser.addCommand('home')
 })
 
 parser.addCommand('news')
-.set('syntax', ['news', 'news <story>'])
+.set('syntax', ['GET news', 'GET news <story>'])
 .set('logic', function(args, env) {
 
   var output = ''
@@ -101,7 +106,7 @@ http.createServer(function (request, response) {
 
   // dispatch request
   var output = parser.parseLexemes(
-    parser.urlPathToLexemes(url.parse(request.url).pathname)
+    parser.webRequestToLexemes(request)
   )
 
   // allow POST requests to handle their own output
