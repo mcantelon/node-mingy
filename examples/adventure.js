@@ -30,7 +30,7 @@ props['rock'] = rock
 var parser = new Parser()
 
 // prop validator restricts lexeme to props in current location
-parser.addValidator('prop_present', function(lexeme, env) {
+parser.addValidator('propPresent', function(lexeme, env) {
 
   // make sure prop exists
   var success = (env.props[lexeme]) ? true : false
@@ -47,7 +47,7 @@ parser.addValidator('prop_present', function(lexeme, env) {
 })
 
 // prop validator restricts lexeme to props in current location
-parser.addValidator('prop_held', function(lexeme, env) {
+parser.addValidator('propHeld', function(lexeme, env) {
 
   // make sure prop exists
   var success = (env.props[lexeme]) ? true : false
@@ -108,10 +108,10 @@ parser.addCommand('look')
 
 parser.addValidator('direction', function(lexeme) {
 
-  var valid_directions = ['north', 'south', 'east', 'west']
+  var validDirections = ['north', 'south', 'east', 'west']
 
   return {
-    'success': (valid_directions.indexOf(lexeme) != -1),
+    'success': (validDirections.indexOf(lexeme) != -1),
     'message': "That's not a direction I understand.\n"
   }
 })
@@ -137,11 +137,11 @@ parser.addCommand('go')
 })
 
 parser.addCommand('get')
-.set('syntax', ['get <prop_present>'])
+.set('syntax', ['get <propPresent>'])
 .set('logic', function(args, env) {
 
   var output = ''
-  var prop = args['prop_present']
+  var prop = args['propPresent']
 
   env.props[prop].location = 'player'
   output += "You take the " + prop + ".\n"
@@ -150,11 +150,11 @@ parser.addCommand('get')
 })
 
 parser.addCommand('drop')
-.set('syntax', ['drop <prop_held>'])
+.set('syntax', ['drop <propHeld>'])
 .set('logic', function(args, env) {
 
   var output = ''
-  var prop = args.prop_held
+  var prop = args.propHeld
 
   env.props[prop].location = env.location
   output += "You drop the " + prop + ".\n"
@@ -202,16 +202,16 @@ var shell = new Shell(parser)
   // if player wins, allow her to restart game
   if (
     shell.parser.env.props.rock.location == 'room'
-    && shell.mode != 'wait_for_restart'
+    && shell.mode != 'waitForRestart'
   ) {
     output += "Congratulations!!! You're set things right and won the game!\n\n"
     output += "Do you want to restart? ('yes' or 'no')\n"
-    shell.mode = 'wait_for_restart'
+    shell.mode = 'waitForRestart'
   }
 
   return output
 })
-.setMode('wait_for_restart', function(shell, data) {
+.setMode('waitForRestart', function(shell, data) {
 
   data = shell.parser.cleanInput(data)
 

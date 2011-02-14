@@ -8,7 +8,7 @@ var mingy = require('../lib/mingy')
 var parser = new Parser()
 
 // allow command-line flag to determine whether equation gets shown
-parser.env['show_equation'] = argv['t']
+parser.env['showEquation'] = argv['t']
 
 parser.addCommand('add')
 .set('syntax', [
@@ -19,7 +19,7 @@ parser.addCommand('add')
 
   var output = ''
 
-  if (env.show_equation) {
+  if (env.showEquation) {
     output += args['a'] + " + " + args['b'] + " = "
   }
 

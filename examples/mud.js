@@ -100,10 +100,10 @@ parser.addCommand('look')
 
 parser.addValidator('direction', function(lexeme) {
 
-  var valid_directions = ['north', 'south', 'east', 'west']
+  var validDirections = ['north', 'south', 'east', 'west']
 
   return {
-    'success': (valid_directions.indexOf(lexeme) != -1),
+    'success': (validDirections.indexOf(lexeme) != -1),
     'message': "That's not a direction I understand.\n"
   }
 })
