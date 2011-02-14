@@ -105,7 +105,7 @@ options returned from node-optimist:
 
     parser.parseLexemes(argv['_'])
 
-The set an environmental variable use the `parse.setEnv` method:
+To set an environmental variable use the `parse.setEnv` method:
 
     parser.setEnv('skyIs', 'blue')
 
