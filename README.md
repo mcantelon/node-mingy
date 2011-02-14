@@ -8,8 +8,8 @@
     |  |      |  | |   | |  |    |  |  \        /  \      /       
     '--'      '--' '---' '--'    '--'   `'-...-'    `-..-'     
 
-Mingy is a cheap and cheerful command parser for node.js CLI tools, adventure
-games, and other such endeavors.
+Mingy is a cheap and cheerful command parser/server for node.js CLI tools,
+adventure games, MUDs, and other such endeavors.
 
 For CLI tools, Mingy works well with
 [node-optimist](https://github.com/substack/node-optimist) (available as
@@ -152,6 +152,25 @@ up a shell with a couple of useless commands.
     .set('welcome', welcome)
     .set('prompt', '$ ')
     .start()
+
+## Interaction via Shell Server
+
+A shell server may be used to provide remote interactivity. The above example
+can function as a server simply by changing the last line to the following:
+
+    .startServer()
+
+The shell is now accessible via telnet:
+
+    telnet localhost 8000
+
+## Dealing with Multiple Users
+
+For multi-user shells, you may wish to use the third optional parameter that
+is sent to command logic. This parameter provides access to the node.js stream
+object representing the connection of the user to your server. The shell server
+adds a `userID` property to the stream that can be used to differentiate between
+users. Please see `examples/mud.js` for an example of this.
 
 ## Initialization
 
