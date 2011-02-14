@@ -32,6 +32,9 @@ would mean the parser input `look` would trigger the command. The syntax
 both trigger the command (with the command's "prop" argument being set,
 respectively, to `mailbox` and `demon`).
 
+Application state is stored by the parser in the env property and is relayed to
+commands when executed.
+
 An example command for a text adventure game:
 
     parser.addCommand('go')
@@ -117,8 +120,18 @@ Below is an example:
     .set('syntax', ['say <string:message*>'])
     .set('logic', function(args, env, stream) {
 
-      return "You say '" + args['message'] + "'.\n"
+      return "You say '" + args['message*'] + "'.\n"
     })
+
+## Initialization
+
+To get easy access to Mingy's parser, command, and shell classes, include
+the folowing code:
+
+    var mingy = require('/path/to/mingy')
+      , Parser = mingy.Parser
+      , Command = mingy.Command
+      , Shell = mingy.Shell
 
 ## In the Works
 
