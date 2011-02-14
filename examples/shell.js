@@ -4,17 +4,17 @@ var mingy = require('../lib/mingy')
   , Shell = mingy.Shell
   , fs = require('fs')
 
-var commands = []
+var parser = new Parser()
 
-commands.push(command = new Command('quit'))
-command.set('syntax', ['quit', 'exit'])
-command.set('logic', function(args) {
+parser.addCommand('quit')
+.set('syntax', ['quit', 'exit'])
+.set('logic', function(args) {
   process.exit(0)
 })
 
-commands.push(command = new Command('ls'))
-command.set('syntax', ['ls'])
-command.set('logic', function(args) {
+parser.addCommand('ls')
+.set('syntax', ['ls'])
+.set('logic', function(args) {
   var output = ''
   var directory = fs.readdirSync(process.cwd())
   for (var index in directory) {
@@ -23,9 +23,9 @@ command.set('logic', function(args) {
   return output
 })
 
-commands.push(command = new Command('cd'))
-command.set('syntax', ['cd <path>'])
-command.set('logic', function(args) {
+parser.addCommand('cd')
+.set('syntax', ['cd <path>'])
+.set('logic', function(args) {
   var output = ''
   try {
     process.chdir(process.cwd() + '/' + args['path'])
@@ -38,8 +38,6 @@ command.set('logic', function(args) {
 
 var welcome = "Welcome to Sullen Shell: the shell with few aspirations.\n"
             + "Available commands: 'ls', 'cd', 'quit', or 'exit'.\n\n"
-
-var parser = new Parser(commands)
 
 var shell = new Shell(parser)
 .set('welcome', welcome)
