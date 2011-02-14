@@ -105,6 +105,10 @@ options returned from node-optimist:
 
     parser.parseLexemes(argv['_'])
 
+The set an environmental variable use the `parse.setEnv` method:
+
+    parser.setEnv('skyIs', 'blue')
+
 ## Concatenation
 
 Normally an argument takes a single lexeme. If one wants to have an argument
@@ -122,6 +126,32 @@ Below is an example:
 
       return "You say '" + args['message*'] + "'.\n"
     })
+
+## Interaction via Shell
+
+Setting up an interactive shell is easy. Below is an example of setting
+up a shell with a couple of useless commands.
+
+    var welcome = "Welcome to The Shell of Futility. You can brood and shout.\n"
+
+    var parser = new Parser()
+
+    parser.addCommand('brood')
+    .set('syntax', ['brood'])
+    .set('logic', function(args) {
+      return "You stare, angrily, at the floor.\n"
+    })
+
+    parser.addCommand('shout')
+    .set('syntax', ['shout'])
+    .set('logic', function(args) {
+      return "You shout in definance and rage.\n"
+    })
+
+    var shell = new Shell(parser)
+    .set('welcome', welcome)
+    .set('prompt', '$ ')
+    .start()
 
 ## Initialization
 
