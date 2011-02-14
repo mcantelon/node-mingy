@@ -182,6 +182,18 @@ the folowing code:
       , Command = mingy.Command
       , Shell = mingy.Shell
 
+## Testing
+
+Testing requires the [expresso](ihttps://github.com/visionmedia/expresso)
+and [should.js](https://github.com/visionmedia/should.js) modules (available
+via rpm as "expresso" and "should" respectively).
+
+Run the tests by entering:
+
+    expresso
+
+Last tested with node v0.3.8.
+
 ## In the Works
 
 Expect more documentation and publishing to the npm repository.
