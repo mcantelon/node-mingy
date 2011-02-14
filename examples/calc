@@ -2,7 +2,9 @@
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
-  , argv = require('optimist').argv
+  , argv = require('optimist')
+    .boolean(['t'])
+    .argv
 
 // set up parser and commands
 var parser = new Parser()
@@ -45,7 +47,7 @@ parser.addCommand('help')
 
   output += "Welcome to POWERCALC!\n\n"
 
-  output += "  Usage: calc <command> [option]\n\n"
+  output += "  Usage: calc [options] <command>\n\n"
 
   output += "  Options:\n"
   output += "    -t show equation\n\n"
