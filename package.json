@@ -6,6 +6,7 @@
     "author" : "Mike Cantelon <mcantelon@gmail.com>",
     "contributors" : [],
     "dependencies" : {
+      "optimist": ">= 0.1.6"
     },
     "main": "./lib/mingy",
     "directories" : {
