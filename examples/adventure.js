@@ -4,7 +4,7 @@ var mingy = require('../lib/mingy')
   , Shell = mingy.Shell
 
 // define locations in our special game
-var Location = function Location() {}
+function Location() {}
 var locations = {}
 
 var hallway = new Location()
@@ -18,7 +18,7 @@ room.exits = {"south": "hallway"}
 locations['room'] = room
 
 // define props in our special game
-var Prop = function Prop() {}
+function Prop() {}
 var props = []
 
 var rock = new Prop()

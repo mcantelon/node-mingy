@@ -4,7 +4,7 @@ var mingy = require('../lib/mingy')
   , Shell = mingy.Shell
 
 // define locations in our special game
-var Location = function Location() {}
+function Location() {}
 var locations = {}
 
 var hallway = new Location()
