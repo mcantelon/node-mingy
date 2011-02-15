@@ -193,7 +193,3 @@ Run the tests by entering:
     expresso
 
 Last tested with node v0.3.8.
-
-## In the Works
-
-Expect more documentation and publishing to the npm repository.
