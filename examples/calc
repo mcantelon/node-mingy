@@ -45,18 +45,18 @@ parser.addCommand('help')
 
   var output = ''
 
-  output += "Welcome to POWERCALC!\n\n"
+  output += 'Welcome to POWERCALC!\n\n'+
 
-  output += "  Usage: calc [options] <command>\n\n"
+            '  Usage: calc [options] <command>\n\n'+
 
-  output += "  Options:\n"
-  output += "    -t show equation\n\n"
+            '  Options:\n'+
+            '    -t show equation\n\n'+
 
-  output += "  Commands:\n"
-  output += "    'add <number> <number>' to add two numbers\n"
-  output += "    '+ <number> <number>' to add two numbers\n"
-  output += "    'subtract <number> <number>' to subtract two numbers\n"
-  output += "    '- <number> <number>' to subtract two numbers"
+            '  Commands:\n'+
+            '    "add <number> <number>" to add two numbers\n'+
+            '    "+ <number> <number>" to add two numbers\n'+
+            '    "subtract <number> <number>" to subtract two numbers\n'+
+            '    "- <number> <number>" to subtract two numbers'
 
   return output
 })
