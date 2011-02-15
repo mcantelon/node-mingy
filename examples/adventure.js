@@ -75,13 +75,13 @@ parser.addCommand('help')
 
   var output = ''
 
-  output += "You can use the following commands:\n"
-  output += "  'look' (or 'l') to look around\n"
-  output += "  'go <direction>' to walk in a direction\n"
-  output += "  'get <object>' to pick up something\n"
-  output += "  'drop <object>' to drop something\n"
-  output += "  'inventory' (or 'i') to list what you're carrying\n"
-  output += "  'exit' to quit the game\n"
+  output += 'You can use the following commands:\n'+
+            '  "look" (or "l") to look around\n'+
+            '  "go <direction>" to walk in a direction\n'+
+            '  "get <object>" to pick up something\n'+
+            '  "drop <object>" to drop something\n'+
+            '  "inventory" (or "i") to list what you\'re carrying\n'+
+            '  "exit" to quit the game\n'
 
   return output
 })
