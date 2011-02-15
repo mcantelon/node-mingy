@@ -34,11 +34,11 @@ parser.addCommand('help')
 
   var output = ''
 
-  output += "You can use the following commands:\n"
-  output += "  'look' (or 'l') to look around\n"
-  output += "  'go <direction>' to walk in a direction\n"
-  output += "  'say <something>' to say some things\n"
-  output += "  'exit' to quit the game\n"
+  output += 'You can use the following commands:\n'+
+            '  "look" (or "l") to look around\n'+
+            '  "go <direction>" to walk in a direction\n'+
+            '  "say <something>" to say some things\n'+
+            '  "exit" to quit the game\n'
 
   return output
 })
@@ -135,8 +135,8 @@ parser.setEnv('users', {})
 parser.setEnv('userNumber', 1)
 
 // begin adventurings!
-var welcome = "Welcome to Low Rent MUD!\n\n"
-            + "Not much happens here, but the stress level is low.\n"
+var welcome = 'Welcome to Low Rent MUD!\n\n'+
+              'Not much happens here, but the stress level is low.\n'
 
 var shell = new Shell(parser)
 .set('port', 8888)
