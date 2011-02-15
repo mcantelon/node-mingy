@@ -21,6 +21,8 @@ Mingy includes a number of simple demos, in the "examples" directory, that can
 give you a quick idea how things work. Examples include a CLI calculator, a
 file navigation shell, a tiny text adventure game, and the foundation of a MUD.
 
+In you use npm, simply `npm install mingy` to install.
+
 ## Commands
 
 In order to reap the "magic" of mingy you define a number of commands, each of
