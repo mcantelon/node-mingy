@@ -3,14 +3,14 @@ var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
   , argv = require('optimist')
-    .boolean(['t'])
+    .boolean(['e'])
     .argv
 
 // set up parser and commands
 var parser = new Parser()
 
 // allow command-line flag to determine whether equation gets shown
-parser.env['showEquation'] = argv['t']
+parser.env['showEquation'] = argv['e']
 
 parser.addCommand('add')
 .set('syntax', [
@@ -50,7 +50,7 @@ parser.addCommand('help')
             '  Usage: calc [options] <command>\n\n'+
 
             '  Options:\n'+
-            '    -t show equation\n\n'+
+            '    -e show equation\n\n'+
 
             '  Commands:\n'+
             '    "add <number> <number>" to add two numbers\n'+
