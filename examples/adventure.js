@@ -189,9 +189,9 @@ parser.setEnv('propsStartingCondition', parser.clone(props))
 parser.setEnv('location', 'hallway')
 
 // begin adventurings!
-var welcome = "Welcome to Rock Moving Adventure!\n\n"
-            + "In a world gone mad, one rock is out of place.\n"
-            + "Enter 'help' for a list of commands.\n"
+var welcome = 'Welcome to Rock Moving Adventure!\n\n'+
+              'In a world gone mad, one rock is out of place.\n'+
+              'Enter "help" for a list of commands.\n'
 
 var shell = new Shell(parser)
 .set('welcome', welcome)
