@@ -37,12 +37,12 @@ parser.addCommand('home')
     var dataRaw = ''
 
     // receive chunks of data
-    env.request.on('data', function(data) {
+    system.request.on('data', function(data) {
       dataRaw += data.toString()
     })
 
     // process data
-    env.request.on('end', function() {
+    system.request.on('end', function() {
 
       // add story to in-memory stories
       var storyData = querystring.parse(dataRaw)
@@ -100,4 +100,5 @@ parser.setEnv(
 )
 
 var web = new WebServer(parser)
+.set('port', '8888')
 .start()
