@@ -6,6 +6,7 @@ THIS IS A WORK IN PROGRESS...
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
+  , WebServer = mingy.WebServer
   , http = require('http')
   , url = require('url')
   , querystring = require('querystring')
@@ -98,31 +99,5 @@ parser.setEnv(
   }
 )
 
-http.createServer(function (request, response) {
-
-  parser.env['request']  = request
-  parser.env['response'] = response
-
-  var callback = false
-  if (request.method == 'POST') {
-
-    callback = function(output) {
-      response.writeHead(200, {'Content-Type': 'text/html'})
-      response.end(output)
-    }
-  }
-
-  // dispatch request
-  var output = parser.parseLexemes(
-    parser.webRequestToLexemes(request),
-    callback
-  )
-
-  // allow POST requests to handle their own output
-  if (!callback) {
-    response.writeHead(200, {'Content-Type': 'text/html'})
-    response.end(output)
-  }
-}).listen(8000);
-
-console.log('Server running at http://127.0.0.1:8000/');
+var web = new WebServer(parser)
+.start()
