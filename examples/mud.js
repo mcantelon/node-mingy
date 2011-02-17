@@ -141,12 +141,12 @@ var welcome = 'Welcome to Low Rent MUD!\n\n'+
 var shell = new Shell(parser)
 .set('port', 8888)
 .set('welcome', welcome)
-.set('connectLogic', function(shell, stream) {
+.set('connectLogic', function(shell, system) {
 
   var guestName = "Guest" + shell.parser.env.userNumber
 
   // set user properties to default
-  shell.parser.env.users[stream.userID] = {
+  shell.parser.env.users[system.stream.userID] = {
     "name": guestName,
     "location": "hallway",
     "messages": []
