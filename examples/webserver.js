@@ -11,21 +11,19 @@ var mingy = require('../lib/mingy')
   , querystring = require('querystring')
 
 // in-memory store of stories
-parser.setEnv(
-  'news',
-  {
-    "earthquake": {
-      "title": "Horrid Earthquake",
-      "body": "The earthquake was depressing."
-    },
-    "disease": {
-      "title": "That Disease isn't such a Problem Anymore",
-      "body": "The disease was cured."
-    }
+var stories = {
+  "earthquake": {
+    "title": "Horrid Earthquake",
+    "body": "The earthquake was depressing."
+  },
+  "disease": {
+    "title": "That Disease isn't such a Problem Anymore",
+    "body": "The disease was cured."
   }
-)
+}
 
 var parser = new Parser()
+parser.setEnv('news', stories)
 
 // define commands (which function as routes)
 parser.addCommand('home')
