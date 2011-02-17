@@ -22,8 +22,8 @@ var parser = new Parser()
 
 parser.addCommand('quit')
 .set('syntax', ['quit', 'exit'])
-.set('logic', function(args, env, stream) {
-  delete env.users[stream.userID]
+.set('logic', function(args, env, system) {
+  delete env.users[system.stream.userID]
   delete stream.userID
   return "Goodbye!\n"
 })
@@ -45,11 +45,11 @@ parser.addCommand('help')
 
 parser.addCommand('nick')
 .set('syntax', ['nick <string:username>'])
-.set('logic', function(args, env, stream) {
+.set('logic', function(args, env, system) {
 
   var output = ''
 
-  env.users[stream.userID].name = args['username']
+  env.users[system.stream.userID].name = args['username']
 
   output += "You are now known as " + args['username'] + ".\n"
 
@@ -58,17 +58,17 @@ parser.addCommand('nick')
 
 parser.addCommand('say')
 .set('syntax', ['say <string:message*>'])
-.set('logic', function(args, env, stream) {
+.set('logic', function(args, env, system) {
 
   var output = "You say your piece.\n"
 
-  var name = env.users[stream.userID].name
-  var location = env.users[stream.userID].location
+  var name = env.users[system.stream.userID].name
+  var location = env.users[system.stream.userID].location
 
   // broadcast to nearby users
   for (var userID in env.users) {
     var user = env.users[userID]
-    if (user.location == location && (userID != stream.userID)) {
+    if (user.location == location && (userID != system.stream.userID)) {
       user.messages.push(name + " says '" + args['message*'] + "'.\n")
     }
   }
@@ -78,11 +78,11 @@ parser.addCommand('say')
 
 parser.addCommand('look')
 .set('syntax', ['l', 'look'])
-.set('logic', function(args, env, stream) {
+.set('logic', function(args, env, system) {
 
   var output = ''
 
-  var location = env.users[stream.userID].location
+  var location = env.users[system.stream.userID].location
 
   // describe location
   output += env.locations[location].description + "\n"
@@ -90,7 +90,7 @@ parser.addCommand('look')
   // describe nearby users
   for (var userID in env.users) {
     var user = env.users[userID]
-    if (user.location == location && (userID != stream.userID)) {
+    if (user.location == location && (userID != system.stream.userID)) {
       output += "You see " + user.name + ".\n"
     }
   }
@@ -110,17 +110,17 @@ parser.addValidator('direction', function(lexeme) {
 
 parser.addCommand('go')
 .set('syntax', ['go <direction:direction>'])
-.set('logic', function(args, env, stream) {
+.set('logic', function(args, env, system) {
 
   var output = ''
   var direction = args.direction
-  var userLocation = env.users[stream.userID].location
+  var userLocation = env.users[system.stream.userID].location
 
   var location = env.locations[userLocation]
 
   if (location.exits[direction]) {
     output += "You go " + direction + ".\n"
-    env.users[stream.userID].location = location.exits[direction]
+    env.users[system.stream.userID].location = location.exits[direction]
   }
   else {
     output += "You can't go that way.\n"
