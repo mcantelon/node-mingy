@@ -1,14 +1,7 @@
-/*
-
-THIS IS A WORK IN PROGRESS...
-
-*/
 var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
   , WebServer = mingy.WebServer
-  , url = require('url')
-  , querystring = require('querystring')
 
 // in-memory store of stories
 var stories = {
