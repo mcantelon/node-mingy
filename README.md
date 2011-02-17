@@ -169,10 +169,12 @@ The shell is now accessible via telnet:
 ## Dealing with Multiple Users
 
 For multi-user shells, you may wish to use the third optional parameter that
-is sent to command logic. This parameter provides access to the node.js stream
-object representing the connection of the user to your server. The shell server
-adds a `userID` property to the stream that can be used to differentiate between
-users. Please see `examples/mud.js` for an example of this.
+is sent to command logic. This parameter provides access to context-specific
+data and functions. When using the shell server a property of this parameter
+is the node.js stream object representing the connection of the user to your
+server. The shell server adds a `userID` property to the stream. This property
+can be used to differentiate between users. Please see `examples/mud.js` for
+an example of this.
 
 ## Initialization
 
