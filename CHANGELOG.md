@@ -2,7 +2,8 @@
 ==================
 
   * Added ability to load hash of commands when creating parser
-  * Got webRequestToLexemes working (so web server example now works)
+  * Got webRequestToLexemes working (so web URL -> command works)
+  * Added WebServer class to use Mingy as a web router
 
 0.1.1 / 2011-02-16
 ==================
