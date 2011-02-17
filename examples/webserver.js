@@ -64,14 +64,20 @@ parser.addCommand('home')
 
 parser.addCommand('news')
 .set('syntax', ['GET news', 'GET news <story>'])
-.set('logic', function(args, env) {
+.set('logic', function(args, env, system) {
 
   var output = ''
 
   if (args['story']) {
 
-    output += "<h1>" + env.news[args.story].title + "</h1>"
-    output += "<p>" + env.news[args.story].body + "</p>"
+    if (env.news[args.story]) {
+      output += "<h1>" + env.news[args.story].title + "</h1>"
+      output += "<p>" + env.news[args.story].body + "</p>"
+    }
+    else {
+
+      system.sendHtmlResponse(system.response, "Story not found.", 404)
+    }
   }
   else {
 
