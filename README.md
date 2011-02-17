@@ -194,4 +194,4 @@ Run the tests by entering:
 
     expresso
 
-Last tested with node v0.3.8.
+Last tested with node v0.4.0 and v0.3.8.
