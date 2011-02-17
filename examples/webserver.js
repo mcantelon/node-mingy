@@ -14,12 +14,12 @@ var parser = new Parser()
 
 // define commands (which function as routes)
 parser.addCommand('home')
-.set('syntax', ['GET', 'POST'])
+.set('syntax', ['<method>'])
 .set('logic', function(args, env) {
 
   var output = ''
 
-  if (env.request.method == 'GET') {
+  if (args.method == 'GET') {
 
     output += '<h1>Hello World!</h1>'+
               '<p>Check out the <a href="/news">news</a>.</p>'+
@@ -31,7 +31,7 @@ parser.addCommand('home')
               '  <p><input type="submit" value="Post" /></p>'+
               '</form>'
   }
-  else if(env.request.method == 'POST') {
+  else if(args.method == 'POST') {
 
     var dataRaw = ''
 
