@@ -138,5 +138,23 @@ module.exports = {
     // try second command form
     var output = parser.parseLexemes(['cat', 'examine'])
     output.should.equal('You look at cat.')
+  },
+
+  // callback from command
+  'callback from command': function() {
+    var parser = new Parser()
+    parser.addCommand('test')
+    .set('syntax', ['test'])
+    .set('logic', function(args, env, system) {
+      system.callback('jazzhands')
+     })
+    var success = false
+    parser.parse('test', function(output) {
+      output.should.equal('jazzhands')
+      success = true
+    })
+    while(!success) {
+      process.nextText()
+    }
   }
 }
