@@ -156,5 +156,30 @@ module.exports = {
     while(!success) {
       process.nextText()
     }
+  },
+
+  // load commands from hash
+  'load commands from hash': function() {
+
+    var commands = {
+      "test1": {
+        "syntax": ['test one'],
+        "logic": function(args) {
+          return "got test one"
+        }
+      },
+      "test2": {
+        "syntax": ['test two'],
+        "logic": function(args) {
+          return "got test two"
+        }
+      }
+    }
+
+    var parser = new Parser(commands)
+    var first_test = parser.parse('test one')
+    first_test.should.equal('got test one')
+    var second_test = parser.parse('test two')
+    second_test.should.equal('got test two')
   }
 }
