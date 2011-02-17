@@ -15,7 +15,7 @@ var parser = new Parser()
 // define commands (which function as routes)
 parser.addCommand('home')
 .set('syntax', ['<method>'])
-.set('logic', function(args, env) {
+.set('logic', function(args, env, system) {
 
   var output = ''
 
@@ -53,8 +53,7 @@ parser.addCommand('home')
       output += 'Story added. Check out the <a href="/news">news</a>.'
 
       // send response
-      env.response.writeHead(200, {'Content-Type': 'text/html'})
-      env.response.end(output)
+      system.callback(output)
     })
   }
 
@@ -104,13 +103,23 @@ http.createServer(function (request, response) {
   parser.env['request']  = request
   parser.env['response'] = response
 
+  var callback = false
+  if (request.method == 'POST') {
+
+    callback = function(output) {
+      response.writeHead(200, {'Content-Type': 'text/html'})
+      response.end(output)
+    }
+  }
+
   // dispatch request
   var output = parser.parseLexemes(
-    parser.webRequestToLexemes(request)
+    parser.webRequestToLexemes(request),
+    callback
   )
 
   // allow POST requests to handle their own output
-  if (request.method != 'POST') {
+  if (!callback) {
     response.writeHead(200, {'Content-Type': 'text/html'})
     response.end(output)
   }
