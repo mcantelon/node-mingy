@@ -156,15 +156,15 @@ var shell = new Shell(parser)
 
   return "You are now known as " + guestName + ".\n"
 })
-.set('logic', function(shell, stream) {
+.set('logic', function(shell, system) {
 
   var output = ''
     , message
     , messages
 
-  if (shell.parser.env.users[stream.userID]) {
+  if (shell.parser.env.users[system.stream.userID]) {
     // relay anything sent by other users
-    messages = shell.parser.env.users[stream.userID].messages
+    messages = shell.parser.env.users[system.stream.userID].messages
     for (var index in messages) {
       output += messages.pop()
     }
