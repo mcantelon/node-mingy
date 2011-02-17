@@ -7,7 +7,6 @@ var mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
   , WebServer = mingy.WebServer
-  , http = require('http')
   , url = require('url')
   , querystring = require('querystring')
 
@@ -34,26 +33,15 @@ parser.addCommand('home')
   }
   else if(args.method == 'POST') {
 
-    var dataRaw = ''
+    system.onPost(system.request, function(storyData) {
 
-    // receive chunks of data
-    system.request.on('data', function(data) {
-      dataRaw += data.toString()
-    })
-
-    // process data
-    system.request.on('end', function() {
-
-      // add story to in-memory stories
-      var storyData = querystring.parse(dataRaw)
       env.news[storyData.slug] = {
         "title": storyData.title,
         "body": storyData.body
       }
 
-      output += 'Story added. Check out the <a href="/news">news</a>.'
+      output += 'Story addeddd. Check out the <a href="/news">news</a>.'
 
-      // send response
       system.callback(output)
     })
   }
