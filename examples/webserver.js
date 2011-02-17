@@ -33,14 +33,14 @@ parser.addCommand('home')
   }
   else if(args.method == 'POST') {
 
-    system.onPost(system.request, function(storyData) {
+    system.getPost(system.request, function(storyData) {
 
       env.news[storyData.slug] = {
         "title": storyData.title,
         "body": storyData.body
       }
 
-      output += 'Story addeddd. Check out the <a href="/news">news</a>.'
+      output += 'Story added. Check out the <a href="/news">news</a>.'
 
       system.callback(output)
     })
