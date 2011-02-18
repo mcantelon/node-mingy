@@ -94,28 +94,28 @@ argument with the name of the type and a colon. For example:
 
 ## Parsing
 
-To parse command input, either the `parse.parse` or `parse.parseLexemes`
+To parse command input, either the `Parser.parse` or `Parser.parseLexemes`
 methods are used. A response string is returned by the method (or, if
 the parse was unsuccessful, `undefined`).
 
-Here's an example of parsing a string of text input using `parse.parse`:
+Here's an example of parsing a string of text input using `Parser.parse`:
 
     parser.parse('go north')
 
-Here's an example of using `parseLexemes` to parse an array of unhyphenated
-options returned from node-optimist:
+Here's an example of using `Parser.parseLexemes` to parse an array of
+unhyphenated options returned from node-optimist:
 
     parser.parseLexemes(argv['_'])
 
 If your commands contain asynchronous logic and you'd like command output to
 be handled by a callback, you can supply one in the second argument to either
-`parse` or `parseLexemes`. Below is an example:
+`Parser.parse` or `Parser.parseLexemes`. Below is an example:
 
     parser.parse('go north', function(output) {
       console.log(output)
     })
 
-To set an environmental variable use the `parse.setEnv` method:
+To set an environmental variable use the `Parser.setEnv` method:
 
     parser.setEnv('skyIs', 'blue')
 
