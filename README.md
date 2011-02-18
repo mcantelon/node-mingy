@@ -107,6 +107,14 @@ options returned from node-optimist:
 
     parser.parseLexemes(argv['_'])
 
+If your commands contain asynchronous logic and you'd like command output to
+be handled by a callback, you can supply one in the second argument to either
+`parse` or `parseLexemes`. Below is an example:
+
+    parser.parse('go north', function(output) {
+      console.log(output)
+    })
+
 To set an environmental variable use the `parse.setEnv` method:
 
     parser.setEnv('skyIs', 'blue')
@@ -176,6 +184,11 @@ server. The shell server adds a `userID` property to the stream. This property
 can be used to differentiate between users. Please see `examples/mud.js` for
 an example of this.
 
+## Web Server
+
+Mingy includes some experimental web functionality. Commands can be used to
+route requests. Please see `examples/webserver.js` for an example of this.
+
 ## Initialization
 
 To get easy access to Mingy's parser, command, and shell classes, include
@@ -185,6 +198,24 @@ the folowing code:
       , Parser = mingy.Parser
       , Command = mingy.Command
       , Shell = mingy.Shell
+
+If you'd like to quickly specify and initialize a number of commands, you
+can create a hash of them and provide this hash to the parser when
+initializing. For example:
+
+    var commands = {
+      "look": {
+        "syntax": ["look"],
+        "logic": function(args) {
+          return "You look around."
+        }
+      }
+    }
+
+    var parser = new Parser(commands)
+
+See the [node-deja](https://github.com/mcantelon/node-deja/blob/master/deja.js)
+module for a more substantial example of this.
 
 ## Testing
 
