@@ -1,12 +1,8 @@
-var mingy = require('../lib/mingy')
+var connect = require('connect')
+  , mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
   , WebServer = mingy.WebServer
-
-// we only need to require this because, in this example,
-// we're going to use the Connect staticProvider to display
-// an image
-var connect = require('connect') 
 
 // in-memory store of stories
 var stories = {
@@ -92,9 +88,9 @@ parser.addCommand('news')
 
 var web = new WebServer(parser)
 connect.createServer(
-  web.middleware,
-  connect.staticProvider(__dirname + '/public')
+  connect.staticProvider(__dirname + '/public'),
+  web.middleware
 )
-.listen(8890)
+.listen(8892)
 
 console.log("Server started at port 8888...")
