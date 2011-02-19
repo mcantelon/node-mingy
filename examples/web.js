@@ -89,11 +89,11 @@ parser.addCommand('news')
   return output
 })
 
-var mingyProvider = new ConnectMiddleware(parser)
+var mingyRouter = new ConnectMiddleware(parser)
 
 connect.createServer(
   connect.staticProvider(__dirname + '/public'),
-  mingyProvider
+  mingyRouter
 )
 .listen(8888)
 
