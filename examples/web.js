@@ -63,7 +63,7 @@ parser.addCommand('news')
 
   var output = ''
 
-  if (args['story']) {
+  if (args.story) {
 
     if (env.news[args.story]) {
       output += "<h1>" + env.news[args.story].title + "</h1>"
