@@ -184,10 +184,11 @@ server. The shell server adds a `userID` property to the stream. This property
 can be used to differentiate between users. Please see `examples/mud.js` for
 an example of this.
 
-## Web Server
+## Connect Middleware
 
-Mingy includes some experimental web functionality. Commands can be used to
-route requests. Please see `examples/webserver.js` for an example of this.
+Mingy includes some experimental web functionality. Using Connect middleware,
+Mingy can act as a request router. Please see `examples/web.js` for an example
+of this.
 
 ## Initialization
 
