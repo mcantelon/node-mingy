@@ -48,7 +48,7 @@ parser.addCommand('home')
         "body": storyData.body
       }
 
-      output += 'Story added. Check out the <a href="/news">news</a>.'
+      output += 'Story added! Check out the <a href="/news">news</a>.'
 
       system.callback(output)
     })
@@ -92,6 +92,6 @@ connect.createServer(
   connect.staticProvider(__dirname + '/public'),
   middleware
 )
-.listen(8895)
+.listen(8888)
 
 console.log("Server started at port 8888...")
