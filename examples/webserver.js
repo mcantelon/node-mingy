@@ -3,6 +3,11 @@ var mingy = require('../lib/mingy')
   , Command = mingy.Command
   , WebServer = mingy.WebServer
 
+// we only need to require this because, in this example,
+// we're going to use the Connect staticProvider to display
+// an image
+var connect = require('connect') 
+
 // in-memory store of stories
 var stories = {
   "earthquake": {
@@ -27,7 +32,8 @@ parser.addCommand('home')
 
   if (args.method == 'GET') {
 
-    output += '<h1>Hello World!</h1>'+
+    output += '<div><img src="/mingy_times.png" /></div>'+
+              '<h1>Hello World!</h1>'+
               '<p>Check out the <a href="/news">news</a>.</p>'+
               '<h2>Add Story</h2>'+
               '<form action="/" method="post">'+
@@ -85,5 +91,10 @@ parser.addCommand('news')
 })
 
 var web = new WebServer(parser)
-.set('port', '8888')
-.start()
+connect.createServer(
+  web.middleware,
+  connect.staticProvider(__dirname + '/public')
+)
+.listen(8890)
+
+console.log("Server started at port 8888...")
