@@ -2,6 +2,7 @@
 ==================
 
   * Changed web server to Connect middleware
+  * Renamed "sendHtmlResponse" web helper function to "send"
 
 0.1.3 / 2011-02-18
 ==================
