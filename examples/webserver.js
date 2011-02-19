@@ -2,7 +2,7 @@ var connect = require('connect')
   , mingy = require('../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
-  , WebServer = mingy.WebServer
+  , ConnectMiddleware = mingy.ConnectMiddleware
 
 // in-memory store of stories
 var stories = {
@@ -86,11 +86,12 @@ parser.addCommand('news')
   return output
 })
 
-var web = new WebServer(parser)
+var middleware = new ConnectMiddleware(parser)
+
 connect.createServer(
   connect.staticProvider(__dirname + '/public'),
-  web.middleware
+  middleware
 )
-.listen(8892)
+.listen(8895)
 
 console.log("Server started at port 8888...")
