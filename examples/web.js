@@ -57,8 +57,15 @@ parser.addCommand('home')
   return output
 })
 
+parser.addValidator('storyExists', function(lexeme, env) {
+  return {
+    'success': env.news[lexeme],
+    'message': "Story not found.\n"
+  }
+})
+
 parser.addCommand('news')
-.set('syntax', ['GET news', 'GET news <story>'])
+.set('syntax', ['GET news', 'GET news <storyExists:story>'])
 .set('logic', function(args, env, system) {
 
   var output = ''
@@ -68,10 +75,6 @@ parser.addCommand('news')
     if (env.news[args.story]) {
       output += "<h1>" + env.news[args.story].title + "</h1>"
       output += "<p>" + env.news[args.story].body + "</p>"
-    }
-    else {
-
-      system.send(system.response, "Story not found.", 404)
     }
   }
   else {
