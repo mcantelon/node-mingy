@@ -71,7 +71,7 @@ parser.addCommand('news')
     }
     else {
 
-      system.sendHtml(system.response, "Story not found.", 404)
+      system.send(system.response, "Story not found.", 404)
     }
   }
   else {
