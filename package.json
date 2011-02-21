@@ -1,12 +1,13 @@
 {
     "name": "mingy",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Cheap parsing for your CLI tool and adventure game needs.",
     "tags" : ["cli", "parsing", "adventure"],
     "author" : "Mike Cantelon <mcantelon@gmail.com>",
     "contributors" : [],
     "dependencies" : {
-      "optimist": ">= 0.1.6"
+      "optimist": ">= 0.1.6",
+      "connect": ">= 0.5.10"
     },
     "main": "./lib/mingy",
     "directories" : {
