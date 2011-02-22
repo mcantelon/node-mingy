@@ -7,7 +7,6 @@ var net = require('net')
   , mingy = require('mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
-  , Shell = mingy.Shell
 
 var conn = net.createConnection(8888, '127.0.0.1')
 var parser = new Parser()
