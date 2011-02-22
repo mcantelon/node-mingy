@@ -7,7 +7,6 @@ var net = require('net')
   , mingy = require('../../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
-  , Shell = mingy.Shell
   , argv = require('optimist').argv
 
 var conn = net.createConnection(8888, '127.0.0.1')
