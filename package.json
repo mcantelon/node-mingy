@@ -1,6 +1,6 @@
 {
     "name": "mingy",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Cheap parsing for your CLI tool and adventure game needs.",
     "tags" : ["cli", "parsing", "adventure"],
     "author" : "Mike Cantelon <mcantelon@gmail.com>",

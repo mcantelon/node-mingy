@@ -1,3 +1,13 @@
+0.2.2 / 2011-02-21
+==================
+
+  * Added client/server example
+
+0.2.1 / 2011-02-21
+==================
+
+  * Added missing dependency to package.json
+
 0.2.0 / 2011-02-19
 ==================
 
