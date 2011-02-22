@@ -1,3 +1,8 @@
+/*
+
+Experimental...
+
+*/
 var net = require('net')
   , mingy = require('mingy')
   , Parser = mingy.Parser

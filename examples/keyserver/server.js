@@ -1,3 +1,8 @@
+/*
+
+Experimental...
+
+*/
 var mingy = require('../../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
