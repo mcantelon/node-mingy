@@ -18,7 +18,7 @@ parser.addCommand('connected')
 
   var randomNumber = Math.floor(Math.random() * 10)
   conn.write('set ' + env.keyName + ' ' + randomNumber)
-  return 'Setting data to ' + randomNumber +'...'
+  return 'Setting data to ' + randomNumber + '...'
 })
 
 // when server has stored value, send command to get value

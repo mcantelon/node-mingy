@@ -1,4 +1,4 @@
-var mingy = require('../lib/mingy')
+var mingy = require('../../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
   , Shell = mingy.Shell
