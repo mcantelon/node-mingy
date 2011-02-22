@@ -4,11 +4,11 @@ Experimental...
 
 */
 var net = require('net')
-  , mingy = require('mingy')
+  , mingy = require('../../lib/mingy')
+  , Client = mingy.Client
   , Parser = mingy.Parser
   , Command = mingy.Command
 
-var conn = net.createConnection(8888, '127.0.0.1')
 var parser = new Parser()
 
 // generate random key name
@@ -18,18 +18,18 @@ console.log('Generated key name ' + parser.env.keyName + '.')
 // when connected with server, send command to store value
 parser.addCommand('connected')
 .set('syntax', ['connected'])
-.set('logic', function(args, env) {
+.set('logic', function(args, env, system) {
 
   var randomNumber = Math.floor(Math.random() * 10)
-  conn.write('set ' + env.keyName + ' ' + randomNumber)
+  system.server.write('set ' + env.keyName + ' ' + randomNumber)
   return 'Setting data to ' + randomNumber + '...'
 })
 
 // when server has stored value, send command to get value
 parser.addCommand('stored')
 .set('syntax', ['stored'])
-.set('logic', function(args, env) {
-  conn.write('get ' + env.keyName)
+.set('logic', function(args, env, system) {
+  system.server.write('get ' + env.keyName)
   return 'Set succeeded.'
 })
 
@@ -41,13 +41,5 @@ parser.addCommand('value')
   return 'Value retrieved.'
 })
 
-conn.on('data', function(data) {
-
-  data = data.toString()
-
-  var output = parser.parse(data)
-
-  if (output) {
-    console.log(output)
-  }
-})
+var client = new Client(parser)
+client.set('port', 8888).start()

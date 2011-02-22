@@ -5,18 +5,18 @@ Experimental...
 */
 var net = require('net')
   , mingy = require('../../lib/mingy')
+  , Client = mingy.Client
   , Parser = mingy.Parser
   , Command = mingy.Command
   , argv = require('optimist').argv
 
-var conn = net.createConnection(8888, '127.0.0.1')
 var parser = new Parser()
 
 parser.addCommand('set')
 .set('syntax', ['set <key> <value>'])
-.set('logic', function(args) {
+.set('logic', function(args, env, system) {
 
-  conn.write('set ' + args.key + ' ' + args.value)
+  system.server.write('set ' + args.key + ' ' + args.value)
   return "Attempting set..."
 })
 
@@ -27,15 +27,5 @@ parser.addCommand('stored')
   return 'Set succeeded.'
 })
 
-conn.on('data', function(data) {
-
-  data = data.toString()
-
-  var output = parser.parse(data)
-
-  if (output) {
-    console.log(output)
-  }
-})
-
-console.log(parser.parseLexemes(argv['_']))
+var client = new Client(parser)
+client.set('port', 8888).start(argv)
