@@ -32,4 +32,4 @@ parser.addCommand('stored')
 
 var client = new Client(parser)
 
-console.log(client.set('port', 8888).start(argv))
+client.set('port', 8888).start(argv)
