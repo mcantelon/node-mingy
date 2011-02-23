@@ -16,9 +16,7 @@ parser.addCommand('set')
 .set('logic', function(args, env) {
 
   env.dataStore[args.key] = args.value
-
   console.log('Set ' + args.key + ' to ' + args.value + '.')
-
   return "stored\n"
 })
 
@@ -27,9 +25,7 @@ parser.addCommand('get')
 .set('logic', function(args, env) {
 
   var value = env.dataStore[args.key]
-
   console.log('Retrieving value of ' + args.key + '.')
-
   return 'value ' + args.key + ' ' + value + "\n"
 })
 

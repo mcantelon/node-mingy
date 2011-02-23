@@ -29,6 +29,7 @@ parser.addCommand('connected')
 parser.addCommand('stored')
 .set('syntax', ['stored'])
 .set('logic', function(args, env, system) {
+
   system.server.write('get ' + env.keyName)
   return 'Set succeeded.'
 })
@@ -37,6 +38,7 @@ parser.addCommand('stored')
 parser.addCommand('value')
 .set('syntax', ['value <key> <value>'])
 .set('logic', function(args) {
+
   console.log('Retrieved value of ' + args.key + ': ' + args.value)
   return 'Value retrieved.'
 })
