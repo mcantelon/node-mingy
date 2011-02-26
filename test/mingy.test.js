@@ -181,5 +181,33 @@ module.exports = {
     first_test.should.equal('got test one')
     var second_test = parser.parse('test two')
     second_test.should.equal('got test two')
+  },
+
+  // test out parser lexeme transformation functionality
+  'parser lexeme transform': function() {
+
+    var parser = new Parser()
+    parser.setEnv('fullNames', {"monkey": "golden monkey"})
+
+    parser.addCommand('touch')
+    .set('syntax', ['touch <thing>'])
+    .set('logic', function(args) {
+
+      return "You touch the " + args.thing + "."
+    })
+
+    parser.addLexemeTransform(function(lexemes, env) {
+
+      for (var lexemeIndex in lexemes) {
+        if (env.fullNames[(lexemes[lexemeIndex])]) {
+          lexemes[lexemeIndex] = env.fullNames[(lexemes[lexemeIndex])]
+        }
+      }
+
+      return lexemes
+    })
+
+    var output = parser.parse('touch monkey')
+    output.should.equal('You touch the golden monkey.')
   }
 }
