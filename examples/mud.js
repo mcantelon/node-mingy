@@ -24,7 +24,7 @@ parser.addCommand('quit')
 .set('syntax', ['quit', 'exit'])
 .set('logic', function(args, env, system) {
   delete env.users[system.stream.userID]
-  delete stream.userID
+  delete system.stream.userID
   return "Goodbye!\n"
 })
 
