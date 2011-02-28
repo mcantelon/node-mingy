@@ -26,8 +26,13 @@ parser.addCommand('send')
 .set('syntax', ['send <file> <filename>'])
 .set('logic', function(args, env, system) {
 
-  var fileContents = fs.readFileSync(args.file)
-  system.server.write('put ' + base64_encode(fileContents) + ' ' + args.filename)
+console.log('000')
+  var fileBuffer = new Buffer(fs.readFileSync(args.file, 'binary'))
+console.log('111')
+  system.server.write('put ' + base64_encode(fileBuffer) + ' ' + args.filename, 'utf8', function() {
+console.log('aaa')
+    system.server.end()
+  })
   return "File sent.\n"
 })
 
@@ -40,6 +45,7 @@ cliParser.addCommand('send')
 .set('syntax', ['send <file> <filename>'])
 .set('logic', function(args) {
 
+console.log('azaz')
   return client.parse('send ' + args.file + ' ' + args.filename)
 })
 

@@ -17,7 +17,8 @@ parser.addCommand('put')
 .set('syntax', ['put <fileData> <filename>'])
 .set('logic', function(args, env) {
 
-  fs.fileWriteSync(args.filename, base64_decode(args.fileData))
+console.log(args.fileData.length)
+  fs.writeFileSync(args.filename, base64_decode(args.fileData), 'binary')
   return "saved\n"
 })
 
