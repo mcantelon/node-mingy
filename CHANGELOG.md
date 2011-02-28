@@ -1,3 +1,8 @@
+0.2.3 / 2011-02-27
+==================
+
+  * Added lexeme transforms to parser, so parsing plugins are doable
+
 0.2.2 / 2011-02-21
 ==================
 
