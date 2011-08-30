@@ -186,6 +186,8 @@ an example of this.
 
 ## Connect Middleware
 
+NOTE: Temporarily disabled as Connect not yet working with Node v0.5.0+.
+
 Mingy includes some experimental web functionality. Using the included
 [Connect](https://github.com/senchalabs/connect) middleware module,
 Mingy can act as a request router. Please see `examples/web.js` for an example
