@@ -1,16 +1,11 @@
-/*
-
-Experimental...
-
-*/
 var net = require('net')
   , mingy = require('../../lib/mingy')
   , Client = mingy.Client
   , Parser = mingy.Parser
   , Command = mingy.Command
   , argv = require('optimist').argv
-
-var parser = new Parser()
+  , parser = new Parser()
+  , client;
 
 // send command to server to set key to value
 parser.addCommand('set')
@@ -27,9 +22,28 @@ parser.addCommand('stored')
 .set('syntax', ['stored'])
 .set('logic', function(args, env) {
 
+  client.close();
   return 'Set succeeded.'
 })
 
-var client = new Client(parser)
+// send command to set key to value
+parser.addCommand('get')
+.set('syntax', ['get <key>'])
+.set('logic', function(args, env, system) {
+  system.server.write('get ' + args.key)
 
+  return "Attempting get..."
+})
+
+// receive value and output to console
+parser.addCommand('value')
+.set('syntax', ['value <key> <value>'])
+.set('logic', function(args) {
+
+  console.log('Retrieved value of ' + args.key + ': ' + args.value)
+  client.close();
+  return 'Value retrieved.'
+})
+
+client = new Client(parser)
 client.set('port', 8888).start(argv)
