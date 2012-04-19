@@ -10,6 +10,7 @@ var net = require('net')
   , Command = mingy.Command
 
 var parser = new Parser()
+  , client;
 
 // generate random key name
 parser.setEnv('keyName', Math.floor(Math.random() * 1000000000).toString(24))
@@ -40,8 +41,9 @@ parser.addCommand('value')
 .set('logic', function(args) {
 
   console.log('Retrieved value of ' + args.key + ': ' + args.value)
+  client.close();
   return 'Value retrieved.'
 })
 
-var client = new Client(parser)
+client = new Client(parser)
 client.set('port', 8888).start()
