@@ -8,8 +8,7 @@ var net = require('net')
   , Client = mingy.Client
   , Parser = mingy.Parser
   , Command = mingy.Command
-
-var parser = new Parser()
+  , parser = new Parser()
   , client;
 
 // generate random key name
