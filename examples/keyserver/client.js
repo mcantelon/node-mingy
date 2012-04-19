@@ -1,8 +1,3 @@
-/*
-
-Experimental...
-
-*/
 var net = require('net')
   , mingy = require('../../lib/mingy')
   , Client = mingy.Client
