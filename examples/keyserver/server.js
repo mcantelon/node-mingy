@@ -7,8 +7,8 @@ var mingy = require('../../lib/mingy')
   , Parser = mingy.Parser
   , Command = mingy.Command
   , Shell = mingy.Shell
+  , parser = new Parser();
 
-var parser = new Parser()
 parser.setEnv('dataStore', {})
 
 parser.addCommand('set')
