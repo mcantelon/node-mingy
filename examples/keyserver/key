@@ -51,5 +51,5 @@ if (parser.validCommands(argv._).length > 0) {
   client = new Client(parser)
   client.set('port', 8888).start(argv)
 } else {
-  console.log('Usage: set <key> <value> | get <key>');
+  console.log('Usage: key set <key> <value> | key get <key>');
 }
