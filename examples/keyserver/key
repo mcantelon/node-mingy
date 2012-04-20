@@ -4,7 +4,6 @@ var net = require('net')
   , Client = mingy.Client
   , Parser = mingy.Parser
   , Command = mingy.Command
-  , argv = require('optimist').argv
   , parser = new Parser()
   , client;
 
@@ -47,7 +46,7 @@ parser.addCommand('value')
 })
 
 // parse if valid, otherwise display usage
-var lexemes = argv._;
+var lexemes = process.argv.slice(2);
 if (parser.validCommands(lexemes).length > 0) {
   client = new Client(parser)
   client.set('port', 8888).start(lexemes)
