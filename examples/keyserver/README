@@ -7,3 +7,11 @@ Then run client.js to see a script communicating with the server.
 
 Then try running cli.js to see how a CLI command can also communicate using
 the protocol.
+
+Try entering:
+
+  ./key set name Bob
+
+then:
+
+  ./key get Bob
