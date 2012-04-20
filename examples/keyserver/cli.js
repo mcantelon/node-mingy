@@ -45,5 +45,10 @@ parser.addCommand('value')
   return 'Value retrieved.'
 })
 
-client = new Client(parser)
-client.set('port', 8888).start(argv)
+// parse if valid, otherwise display usage
+if (parser.validCommands(argv._).length > 0) {
+  client = new Client(parser)
+  client.set('port', 8888).start(argv)
+} else {
+  console.log('Usage: set <key> <value> | get <key>');
+}
