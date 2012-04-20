@@ -47,9 +47,10 @@ parser.addCommand('value')
 })
 
 // parse if valid, otherwise display usage
-if (parser.validCommands(argv._).length > 0) {
+var lexemes = argv._;
+if (parser.validCommands(lexemes).length > 0) {
   client = new Client(parser)
-  client.set('port', 8888).start(argv)
+  client.set('port', 8888).start(lexemes)
 } else {
   console.log('Usage: key set <key> <value> | key get <key>');
 }
