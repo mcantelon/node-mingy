@@ -1,0 +1,9 @@
+The keyserver example shows how Mingy can be used to implement simple TCP/IP
+protocols.
+
+Run server.js to start the server.
+
+Then run client.js to see a script communicating with the server.
+
+Then try running cli.js to see how a CLI command can also communicate using
+the protocol.
