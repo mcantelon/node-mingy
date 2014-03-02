@@ -19,7 +19,8 @@ locally via the command line or remotely as a server.
 
 Mingy includes a number of simple demos, in the "examples" directory, that can
 give you a quick idea how things work. Examples include a CLI calculator, a
-file navigation shell, a tiny text adventure game, and the foundation of a MUD.
+file navigation shell, a tiny text adventure game, the foundation of a MUD,
+a key/value server, and a web application using Mingy for routing.
 
 In you use npm, simply `npm install mingy` to install.
 
