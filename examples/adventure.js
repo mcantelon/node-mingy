@@ -204,7 +204,7 @@ var shell = new Shell(parser)
     shell.parser.env.props.rock.location == 'room'
     && shell.mode != 'waitForRestart'
   ) {
-    output += "Congratulations!!! You're set things right and won the game!\n\n"
+    output += "Congratulations!!! You've set things right and won the game!\n\n"
     output += "Do you want to restart? ('yes' or 'no')\n"
     shell.mode = 'waitForRestart'
   }
